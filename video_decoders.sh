@@ -1,0 +1,1 @@
+ffmpeg -decoders | grep "V[.F][.S][.X][.B][.D] " | awk '{print "--disable-decoder=" $2 " \\"}'
