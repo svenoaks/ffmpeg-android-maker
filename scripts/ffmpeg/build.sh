@@ -45,16 +45,19 @@ DEP_LD_FLAGS="-L${BUILD_DIR_EXTERNAL}/${ANDROID_ABI}/lib $FFMPEG_EXTRA_LD_FLAGS"
   --disable-static \
   --pkg-config=${PKG_CONFIG_EXECUTABLE} \
   ${EXTRA_BUILD_CONFIGURATION_FLAGS} \
+  --disable-protocols \
   --disable-muxers \
   --disable-encoders \
   --disable-avdevice \
   --disable-postproc \
   --disable-doc \
+  --disable-zlib \
   --disable-debug \
   --disable-network \
-  --enable-small \
   --disable-programs \
   --disable-swscale \
+  --disable-bsfs \
+  --disable-filters \
   --disable-decoder=012v \
   --disable-decoder=4xm \
   --disable-decoder=8bps \
@@ -303,6 +306,31 @@ DEP_LD_FLAGS="-L${BUILD_DIR_EXTERNAL}/${ANDROID_ABI}/lib $FFMPEG_EXTRA_LD_FLAGS"
   --disable-decoder=zerocodec \
   --disable-decoder=zlib \
   --disable-decoder=zmbv \
+  --disable-decoder=ssa \
+  --disable-decoder=ass \
+  --disable-decoder=dvbsub \
+  --disable-decoder=dvdsub \
+  --disable-decoder=cc_dec \
+  --disable-decoder=pgssub \
+  --disable-decoder=jacosub \
+  --disable-decoder=microdvd \
+  --disable-decoder=mov_text \
+  --disable-decoder=mpl2 \
+  --disable-decoder=pjs \
+  --disable-decoder=realtext \
+  --disable-decoder=sami \
+  --disable-decoder=stl \
+  --disable-decoder=srt \
+  --disable-decoder=subrip \
+  --disable-decoder=subviewer \
+  --disable-decoder=subviewer1 \
+  --disable-decoder=text \
+  --disable-decoder=vplayer \
+  --disable-decoder=webvtt \
+  --disable-decoder=xsub \
+  --disable-avresample \
+  --enable-small \
+  --enable-protocol=file \
   $ADDITIONAL_COMPONENTS || exit 1
 
 ${MAKE_EXECUTABLE} clean
