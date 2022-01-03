@@ -13,7 +13,7 @@ The script also produces `ffmpeg` and `ffprobe` executables that can be used in 
 
 The main focus of ffmpeg-android-maker is to prepare shared libraries for seamless integration into an Android project. The script prepares the `output` directory that is meant to be used. And it's not the only thing this project does.
 
-By default this script downloads and builds the FFmpeg **4.3.1**, but the version can be overridden.
+By default this script downloads and builds the FFmpeg **4.4.1**, but the version can be overridden.
 
 The details of how this script is implemented are described in this series of posts:
 * [Part 1](https://proandroiddev.com/a-story-about-ffmpeg-in-android-part-i-compilation-898e4a249422)
@@ -26,9 +26,9 @@ The [WIKI](https://github.com/Javernaut/ffmpeg-android-maker/wiki) contains a lo
 
 The actual content of `output` directory depends on how the FFmpeg was configured before assembling. The [master](https://github.com/Javernaut/ffmpeg-android-maker) branch of ffmpeg-android-maker builds 'vanilla' version of FFmpeg. This means all default components and shared libraries are built (according to the image).
 
-The [what-the-codec](https://github.com/Javernaut/ffmpeg-android-maker/tree/what-the-codec) branch contains certain customizations in build scripts of FFmpeg and certain external libraries. These customizations are meant to be an example of how this project can be tuned to obtain the only functionality that is actually needed. What is actually customized can be seen [here](https://github.com/Javernaut/ffmpeg-android-maker/commit/734a4e98c41576b8b9fcf032e0754315b5b77a82).
+The [media-file](https://github.com/Javernaut/ffmpeg-android-maker/tree/media-file) branch contains certain customizations in build scripts of FFmpeg and certain external libraries. These customizations are meant to be an example of how this project can be tuned to obtain the only functionality that is actually needed. What is actually customized can be seen [here](https://github.com/Javernaut/ffmpeg-android-maker/commit/734a4e98c41576b8b9fcf032e0754315b5b77a82).
 
-The [WhatTheCodec](https://github.com/Javernaut/WhatTheCodec) Android app uses only a subset of FFmpeg's functionality, so the redundant parts are not even compiled. This gives much smaller output binaries.
+The [MediaFile](https://github.com/Javernaut/MediaFile) Android library uses only a subset of FFmpeg's functionality, so the redundant parts are not even compiled. This gives much smaller output binaries.
 
 Also there are a lot of arguments that you can pass to the `ffmpeg-android-maker.sh` script for tuning certain features. Check this [WIKI page](https://github.com/Javernaut/ffmpeg-android-maker/wiki/Available-script-arguments) out for more info.
 
@@ -40,6 +40,8 @@ Also there are a lot of arguments that you can pass to the `ffmpeg-android-maker
 * x86_64
 
 If you need to build only some of these ABIs, you can do so by specifying a [flag](https://github.com/Javernaut/ffmpeg-android-maker/wiki/Available-script-arguments#desired-abis-to-build).
+
+The default Android API version used to compile these binaries is **19**, as the minimum supported by the Android NDK r24. However, with NDK r23 it is still possible to have it **16**. Some external libraries (like libvpx) require to use higher API - **21**. This is explained at this [WIKI page](https://github.com/Javernaut/ffmpeg-android-maker/wiki/Available-script-arguments#android-platform-version) in more details.
 
 ## Supported host OS
 
@@ -58,7 +60,7 @@ The script assumes you have Android SDK and NDK already installed. In order to t
 * `ANDROID_SDK_HOME` - absolute path to your Android SDK
 * `ANDROID_NDK_HOME` - absolute path to your Android NDK
 
-The script expects to use **at least** Android NDK **r19** (both **r20** and **r21** also work ok).
+The script expects to use **at least** Android NDK **r23**. It doesn't matter if you use other version of NDK for you actual Android project.
 
 Certain external libraries require additional software to be installed. Check this [WIKI page](https://github.com/Javernaut/ffmpeg-android-maker/wiki/Supported-external-libraries) out for more info. Note that if you don't need these external libraries then you also don't need to install the additional software. These external libraries are not built by default.
 
