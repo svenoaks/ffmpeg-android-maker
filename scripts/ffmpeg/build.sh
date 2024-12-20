@@ -333,7 +333,6 @@ EXTRA_LDFLAGS="-Wl,-z,max-page-size=16384 $DEP_LD_FLAGS"
   --disable-decoder=vplayer \
   --disable-decoder=webvtt \
   --disable-decoder=xsub \
-  --disable-avresample \
   --enable-small \
   --enable-protocol=file \
   $ADDITIONAL_COMPONENTS || exit 1
